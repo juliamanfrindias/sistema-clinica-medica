@@ -1,0 +1,41 @@
+{% extends 'tcc/base.html' %}
+
+{% block content %}
+
+	<a class="btn btn-primary" href="{% url 'create_medicamento' %}" role="button">Cadastrar novo medicamento</a>
+
+	<h2>Lista de Medicamentos</h2>
+
+	<table class="table">
+	    <thead>
+	      <tr >
+	        <th>Número de Indentificação</th>
+	        <th>Nome Genérico</th>
+	        <th>Nome do fabricante</th>
+	        <th>Ações</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	    	{% for m in medicamento %}
+	      	<tr>
+		        <td><p>{{ m.id_medicamento }}</p></td>
+		        <td><p>{{ m.nomegen_medicamento }}</p></td>
+		        <td><p>{{ m.fabricante }}</p></td>
+		        <td>
+		        	<a class="btn btn-success" href="{% url 'get_medicamento_byid' medicamento_id=m.id_medicamento %}" role="button">Detalhes</a>
+
+					{% if request.session.tipo_user == 2 %}
+						<a class="btn btn-warning" href="{% url 'update_medicamento' medicamento_id=m.id_medicamento  %}" role="button">Atualizar Dados</a>
+
+						<a class="btn btn-danger" href="{% url 'delete_medicamento' medicamento_id=m.id_medicamento %}" role="button">Deletar</a>
+					{% endif %}
+		        </td>
+	      	</tr>
+	      	{% endfor %}
+	    </tbody>
+	</table>
+	
+
+
+
+{% endblock %}

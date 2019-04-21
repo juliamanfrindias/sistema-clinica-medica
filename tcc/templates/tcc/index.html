@@ -1,0 +1,46 @@
+{% extends 'tcc/base.html' %}
+
+{% block content %}
+
+	
+
+	<p>Ver pacientes</p>
+	<a href="{% url 'get_all_paciente' %}">Ir</a>
+	<hr>
+
+	<p>Marcar Consulta</p>
+	<a href="{% url 'create_consulta' %}">Ir</a>
+	<p>Listar Consultas</p>
+	<a href="{% url 'get_all_consulta' %}">Ver</a>
+	<hr>
+
+	<p>Cadastrar Medicamentos</p>
+	<a href="{% url 'create_medicamento' %}">Ir</a>
+	<p>Listar Medicamentos</p>
+	<a href="{% url 'get_all_medicamento' %}">Ver</a>
+	<hr>
+
+	<p>Cadastrar Receita</p>
+	<a href="{% url 'create_receita' %}">Ir</a>
+	<p>Listar Receitas</p>
+	<a href="{% url 'get_all_receita' %}">Ver</a>
+	<hr>
+
+	<p>Cadastar Exames</p>
+	<a href="{% url 'create_exames' %}">Ir</a>
+	<p>Listar Exames</p>
+	<a href="{% url 'get_all_exames' %}">Ver</a>
+	<hr>
+
+	<p>Listar Médicos</p>
+	<a href="{% url 'get_all_medico' %}">Ver</a>
+	<hr>
+
+	<p>Listar Recepcionistas</p>
+	<a href="{% url 'get_all_recepcionista' %}">Ver</a>
+
+
+
+{% endblock %}
+
+

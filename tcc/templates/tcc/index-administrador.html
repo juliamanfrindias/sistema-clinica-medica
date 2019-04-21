@@ -1,0 +1,21 @@
+{% extends 'tcc/base.html' %}
+
+{% block content %}
+
+	<ul class="list-group">
+		<li class="list-group-item active"><h4>Administração</h4></li>
+	  	<li class="list-group-item"><a href="{% url 'get_all_medico' %}">Gerenciar Médicos</a></li>
+	  	<li class="list-group-item"><a href="{% url 'get_all_paciente' %}">Gerenciar Pacientes</a></li>
+	  	<li class="list-group-item"><a href="{% url 'get_all_recepcionista' %}">Gerenciar Recepcionistas</a></li>
+	  	<li class="list-group-item"><a href="{% url 'get_all_medicamento' %}">Gerenciar Medicamentos</a></li>
+	  	<li class="list-group-item"><a href="{% url 'get_all_consulta' %}">Gerenciar Consultas</a></li>
+	  	<li class="list-group-item"><a href="{% url 'get_all_exames' %}">Gerenciar Exames</a></li>
+	  	<li class="list-group-item"><a href="{% url 'create_tipoexame' %}">Adicionar Tipo Exame</a></li>
+	  	<li class="list-group-item"><a href="{% url 'get_all_receita' %}">Gerenciar Receitas</a></li>
+	</ul>
+
+<!-- 	<p><a role="button" class="btn btn-primary" href="{% url 'add_exames' %}">ADD Exames</a></p>
+ -->
+
+{% endblock %}
+

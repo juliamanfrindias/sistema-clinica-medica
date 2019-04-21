@@ -1,0 +1,42 @@
+{% extends 'tcc/base.html' %}
+
+{% block content %}
+
+
+
+	<h2>Lista de Consultas</h2>
+
+	
+	<table class="table">
+    <thead>
+      <tr>
+        <th>Número de Indentificação</th>
+        <th>Data da Consulta</th>
+        <th>Nome Paciente</th>
+        <th>Nome Médico</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+    	{% for c in consulta%}
+      	<tr>
+	        <td><p>{{ c.id_consulta }}</p></td>
+	        <td><p>{{ c.data_consulta }}</p></td>
+          <td><p>{{ c.id_paciente.nome_paciente }}</p></td>
+          <td><p>{{ c.id_medico.nome_funcionario }}</p></td>
+	        <td>
+	        	<a class="btn btn-success" href="{% url 'get_consulta_byid' consulta_id=c.id_consulta %}" role="button">Detalhes</a>  
+
+				<a class="btn btn-warning" href="{% url 'update_consulta' consulta_id=c.id_consulta %}" role="button">Atualizar Dados</a>
+				
+				<a class="btn btn-danger" href="{% url 'delete_consulta' consulta_id=c.id_consulta %}" role="button">Delete</a>
+	        </td>
+      	</tr>
+      	{% endfor %}
+    </tbody>
+  </table>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'tcc/base.html' %}
+
+{% block content %}
+
+
+	<h2>Lista de Recepcionistas</h2>
+
+
+	<table class="table">
+	    <thead>
+	      <tr >
+	        <th>Número de Indentificação</th>
+	        <th>Nome Recepcionista</th>
+	        <th>Ações</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	    	{% for r in recepcionista %}
+	      	<tr>
+		        <td><p>{{ r.id_recepcionista }}</p></td>
+		        <td><p>{{ r.nome_funcionario }}</p></td>
+		        <td>
+		        	<a class="btn btn-success" href="{% url 'get_recepcionista_byid' recepcionista_id=r.id_recepcionista %}" role="button">Detalhes</a>
+	
+					<a class="btn btn-warning" href="{% url 'update_recepcionista' recepcionista_id=r.id_recepcionista  %}" role="button">Atualizar Dados</a>
+					
+					<a class="btn btn-danger" href="{% url 'delete_recepcionista' recepcionista_id=r.id_recepcionista %}" role="button">Deletar</a>
+		        </td>
+	      	</tr>
+	      	{% endfor %}
+	    </tbody>
+	</table>
+
+
+{% endblock %}

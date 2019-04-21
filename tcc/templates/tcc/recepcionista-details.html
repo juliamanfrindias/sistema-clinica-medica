@@ -1,0 +1,15 @@
+{% extends 'tcc/base.html' %}
+
+{% block content %}
+
+	<h1>Recepcionista</h1>
+	<p>Nome: {{ recepcionista.nome_funcionario }}</p>
+
+	<p>Id do funcionário: {{ recepcionista.id_recepcionista }} </p>
+
+	<p>Email: {{ recepcionista.email_funcionario }}</p>
+
+	<a class="btn btn-default" href="{% url 'get_all_recepcionista' %}" role="button">Voltar</a>
+
+
+{% endblock %}

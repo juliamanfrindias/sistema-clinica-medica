@@ -1,0 +1,48 @@
+{% extends 'tcc/base-login.html' %}
+
+{% block content %}
+
+	<h2>Login - Registrar</h2>
+	
+	<div class="form-group">
+
+		<form action="{% url 'register_login' %}" method="POST" class="form-group">
+		
+			<p>Nome completo</p>
+			<input class="form-control" type="text" name="nome" id="nome">
+			<p>CPF</p>
+			<input class="form-control" type="text" name="user" id="user">
+			<p>Senha</p>
+			<input class="form-control" type="password" name="password" id="password">
+			<p>Confirme a senha</p>
+			<input class="form-control" type="password" name="confirma-senha">
+			<p>Email</p>
+			<input class="form-control" type="email" name="email">
+			<p>Tipo de funcionario</p>
+			<select class="form-control" name="tipo_func" id="tipo_func" onchange="showfield(this.options[this.selectedIndex].value)">
+				<option value="-1">---------</option>
+				<option value="1">Médico</option>
+				<option value="0">Recepcionista</option>
+			</select>
+			<div id="div1"></div>
+
+
+			<!-- <input class="form-control" type="integer" name="type_l" id="type_l" > -->
+			<br>
+			{% csrf_token %}
+			<br>
+			<input class="btn btn-primary" type="submit" name="enviar" value="Enviar">
+			<a class="btn btn-default" href="{% url 'index' %}" role="button">Voltar</a>
+			
+		</form>
+		
+	</div>
+
+	<script type="text/javascript">
+		function showfield(name){
+			  if(name=='1')document.getElementById('div1').innerHTML='<p>Especialidade	: </p><input class="form-control" type="text" name="especialidade" />';
+			  else document.getElementById('div1').innerHTML='';
+		}
+	</script>
+
+{% endblock %}

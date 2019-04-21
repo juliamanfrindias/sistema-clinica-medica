@@ -1,0 +1,17 @@
+{% extends 'tcc/base.html' %}
+
+{% block content %}
+
+	<h2>Medicamento</h2>
+
+	<p>Id medicamento: {{medicamento.id_medicamento_}}</p>
+
+	<p>Nome Genérico: {{medicamento.nomegen_medicamento}}</p>
+
+	<p>Nome de Fábrica: {{medicamento.nomefab_medicamento}}</p>
+
+	<p>Fabricante: {{medicamento.fabricante}}</p>
+
+	<button><a href="{% url 'get_all_medicamento' %}">Voltar</a></button>
+
+{% endblock %}

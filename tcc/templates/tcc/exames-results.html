@@ -1,0 +1,26 @@
+{% extends 'tcc/base.html' %}
+
+{% block content %}
+
+	<h2>Inserir Resultado de exame</h2>
+
+	<form action="{% url 'result_exames' exame_id=exame.id_exame %}" method="POST" enctype="multipart/form-data">
+		<p>Id do Exame: {{exame.id_exame}}
+		</p>
+		<p>Nome do Paciente: {{exame.id_consulta.id_paciente.nome_paciente}} 
+		</p>
+		<p>Enviar resultado do exame:</p>
+		<p><input type="file" name="resultado" id="resultado"></p>
+		
+		{% csrf_token %}
+		<input class="btn btn-primary" type="submit" name="salvar" value="Salvar">	
+		<a class="btn btn-default" href="{% url 'get_all_exames' %}">Cancelar</a>
+
+	</form>
+
+	
+
+	
+
+
+{% endblock %}

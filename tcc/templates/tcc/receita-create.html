@@ -1,0 +1,49 @@
+{% extends 'tcc/base.html' %}
+
+{% block content %}
+
+	<h2>Cadastrar Receita</h2>
+
+	{% if message %}
+		<p>Número de Consulta Invalido</p>
+	{% endif %}
+
+	<div class="form-group">
+		<form action="{% url 'create_receita' %}" method="POST">
+
+			<p>Número da consulta:
+				<input class="form-control" type="text" name="consulta" id="consulta">
+			</p>
+			<p>Número do paciente:
+				<input class="form-control" type="text" name="paciente" id="paciente">
+			</p>
+			<p>Descrição da receita:
+				<input class="form-control" type="text" name="desc" id="desc">
+			</p>
+			<p>Medicamentos:
+				<select multiple="multiple" class="form-control" name="remedios" id="remedios">
+					{% for m in medicamentos %}
+					<option value="{{m.id_medicamento}}">{{m.nomegen_medicamento}}</option>
+					{% endfor %}
+				</select>
+			</p>
+
+			{% csrf_token %}
+
+			<button class="btn btn-primary" type="submit">Salvar</button>
+			{% if  request.session.tipo_user == 1 %}
+				<a class="btn btn-default" href="{% url 'authenticate_login' %}" role="button">Voltar</a>
+			{% else %}
+				<a class="btn btn-default" href="{% url 'get_all_receita' %}" role="button">Voltar</a>
+			{% endif %}
+			
+		</form>
+
+	</div>
+
+	
+
+	
+
+
+{% endblock %}

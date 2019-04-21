@@ -1,0 +1,55 @@
+{% extends 'tcc/base.html' %}
+
+{% block content %}
+
+
+	{% if message %}
+		<p>Número de Consulta inválido!</p>
+	{% endif%}
+
+
+	{% if exame %}
+		<h2>Atualizar Exames</h2>
+
+		<form action="{% url 'update_exames' exame.id_exame %}" method="POST">
+			<p>Numero da Consulta: {{exame.id_consulta.id_consulta}} </p>
+			<p>Nome do Paciente: {{ exame.id_consulta.id_paciente.nome_paciente }} </p>
+			<p>Tipo de Exame: {{exame.tipo_exame}}</p>
+			<p>Descrição Exame: <textarea class="form-control" name="desc" rows="10" cols="30" id="desc" >{{exame.descricao_exame}}</textarea></p>
+			
+			
+			{% csrf_token %}
+			<input class="btn btn-primary" type="submit" name="salvar" value="Salvar">	
+			<a class="btn btn-default" href="{% url 'authenticate_login' %}">Voltar</a>	
+		</form>
+
+	{% else %}
+
+		<h2>Cadastrar Exame</h2>
+
+		<form action="{% url 'create_exames' %}" method="POST">
+			<p>Numero da Consulta: <input class="form-control" type="text" name="consulta" id="consulta" > </p>
+			<p>Numero do Paciente: <input class="form-control" type="text" name="paciente" id="paciente"> </p>
+			<p>Tipo de Exame: 
+				<select class="form-control" name="tipo" id="tipo">
+					{%  for t in tipoexame %}
+						<option value="{{t.nome_tipoexame}}">{{t.nome_tipoexame}}</option>
+
+					{% endfor %}
+					
+				</select></p>
+					
+			<p>Descrição Exame: <textarea class="form-control" name="desc" rows="10" cols="30" id="desc"></textarea></p>
+			
+			{% csrf_token %}
+			<input class="btn btn-primary" type="submit" name="salvar" value="Salvar">	
+			<a class="btn btn-default" href="{% url 'authenticate_login' %}">Voltar</a>		
+		</form>
+
+	{% endif %}
+
+
+{% endblock %}
+
+
+

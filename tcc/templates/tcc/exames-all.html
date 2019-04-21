@@ -1,0 +1,53 @@
+{% extends 'tcc/base.html' %}
+
+{% block content %}
+
+	{% if request.session.tipo_user == 1 %}
+
+		<a class="btn btn-primary" href="{% url 'create_exames' %}" role="button">Solicitar novo exame</a>
+	{% endif %}
+
+	<h2>Lista de Exames</h2>
+
+	<table class="table">
+	    <thead>
+	      <tr >
+	        <th>Indentificação Exame</th>
+	        <th>Identificação Consulta</th>
+	        <th>Nome do Paciente</th>
+	        <th>Exame</th>
+	        <th>Data de Solicitação</th>
+	        <th>Ações</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	    	{% for e in exames %}
+	      	<tr>
+		        <td><p>{{ e.id_exame }}</p></td>
+		        <td><p>{{ e.id_consulta.id_consulta }}</p></td>
+		        <td><p>{{ e.id_consulta.id_paciente.nome_paciente }}</p></td>
+		        <td><p>{{ e.tipo_exame }}</p></td>
+		        <td><p>{{ e.data_exame }}</p></td>
+		        <td>
+		        	<a class="btn btn-success" href="{% url 'get_exames_byid' exame_id=e.id_exame %}" role="button">Detalhes</a>
+
+
+					{% if request.session.tipo_user == 2 or request.session.tipo_user == 0 %}
+						<a class="btn btn-warning" href="{% url 'result_exames' exame_id=e.id_exame %}" role="button">Enviar resultado</a>
+					{% endif %}
+					{% if e.resultado_exame %}
+					<a role="button" class="btn btn-primary" href="../../media/{{ e.resultado_exame }}">Resultado</a>
+					{% endif %}
+
+
+					{% if request.session.tipo_user == 2 %}
+						<a class="btn btn-danger" href="{% url 'delete_exames' exame_id=e.id_exame %}" role="button">Delete</a>
+					{% endif %}
+		        </td>
+	      	</tr>
+	      	{% endfor %}
+	    </tbody>
+	</table>
+	
+
+{% endblock %}

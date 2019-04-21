@@ -1,0 +1,25 @@
+{% extends 'tcc/base.html' %}
+
+{% block content %}
+
+	<h2>Atualização de Paciente</h2>
+
+	<div class="form-group">
+		<form  action="{% url 'update_paciente' paciente_id=paciente.id_paciente %}" method="POST">
+
+			<p>Nome: <input class="form-control" type="text" name="nome_p" id="nome_p" value="{{paciente.nome_paciente}}"> </p>
+
+			<p>Email:<input class="form-control" type="text" name="email_p" id="email_p" value="{{paciente.email_paciente}}"></p>
+	 
+				
+			{% csrf_token %}
+			<button class="btn btn-primary" type="submit">Salvar</button>
+			<a class="btn btn-default" href="{% url 'get_all_paciente' %}" role="button">Cancelar</a>
+
+		</form>
+	</div>
+	
+	
+	
+
+{% endblock %}

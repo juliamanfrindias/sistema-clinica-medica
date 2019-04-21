@@ -1,0 +1,50 @@
+{% extends 'tcc/base.html' %}
+
+{% block content %}
+
+
+	{% if medicamento %}
+		<h2>Atualizar Medicamento</h2>
+		<div class="form-group">
+
+			<form action="{% url 'update_medicamento' medicamento_id=medicamento.id_medicamento %}" method="POST">
+			
+
+				<p>Nome Generico: <input class="form-control" type="text" name="nome_gen" id="nome_gen" value="{{medicamento.nomegen_medicamento}}"></p>
+
+				<p>Nome de Fabrica:<input class="form-control" type="text" name="nome_fab" id="nome_fab" value="{{medicamento.nomefab_medicamento}}"></p>
+
+				<p>Nome do Fabricante:<input class="form-control" type="text" name="fab" id="fab" value="{{medicamento.fabricante}}"></p>
+
+
+				{% csrf_token %}
+
+				<button class="btn btn-primary" type="submit">Salvar</button>
+				<a class="btn btn-default" href="{% url 'get_all_medicamento' %}" role="button">Cancelar</a>
+
+			</form>
+		</div>
+	{% else %}
+		<h2>Cadastro de Medicamento</h2>
+		<div class="form-group">
+
+			<form action="{% url 'create_medicamento' %}" method="POST">
+			
+
+				<p>Nome Generico: <input class="form-control" type="text" name="nome_gen" id="nome_gen"></p>
+
+				<p>Nome de Fabrica:<input class="form-control" type="text" name="nome_fab" id="nome_fab"></p>
+
+				<p>Nome do Fabricante:<input class="form-control" type="text" name="fab" id="fab"></p>
+
+
+				{% csrf_token %}
+
+				<button class="btn btn-primary" type="submit">Salvar</button>
+				<a class="btn btn-default" href="{% url 'get_all_medicamento' %}" role="button">Cancelar</a>
+
+			</form>
+		</div>
+	{% endif %}
+
+{% endblock %}

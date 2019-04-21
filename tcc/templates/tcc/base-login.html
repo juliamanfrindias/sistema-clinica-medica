@@ -1,0 +1,44 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sistema de Gestão de Clínica Médica</title>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/projeto.css">
+	
+</head>
+<body>
+
+	
+	<div class="container">
+	  
+	   	<div class="row">
+	   		<div class="page-header">
+
+	   			<div class="col-sm-8  col-sm-offset-3">
+	   				<h1>Sistema de Gestão de Clínica Médica</h1>
+	   			</div>
+
+    			      
+  			</div>
+  			
+	       <div class="row">
+	       		<div class="col-sm-4  col-sm-offset-4">
+	       			
+
+					    	{% block content %}
+							{% endblock %}
+					   
+	       				
+	       		</div>
+	       </div>
+	   	</div>
+	   	<footer class="row">
+	       
+	   	</footer>
+	</div>
+
+</body>
+</html>

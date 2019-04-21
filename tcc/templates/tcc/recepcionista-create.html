@@ -1,0 +1,24 @@
+{% extends 'tcc/base.html' %}
+
+{% block content %}
+
+	<h2>Cadastro de Recepcionistas</h2>
+
+	<div class="form-group">
+		<form action="{% url 'update_recepcionista' recepcionista_id=recepcionista.id_recepcionista %}" method="POST">
+		
+
+			<p>Nome: <input class="form-control" type="text" name="nome" id="nome" value="{{recepcionista.nome_funcionario}}"></p>
+
+			<p>Email:<input class="form-control" type="text" name="email" id="email" value="{{recepcionista.email_funcionario}}"></p>
+
+
+			{% csrf_token %}
+
+			<button class="btn btn-primary" type="submit">Salvar</button>
+			<a class="btn btn-default" href="{% url 'get_all_recepcionista' %}" role="button">Cancelar</a>
+
+		</form>
+	</div>
+
+{% endblock %}

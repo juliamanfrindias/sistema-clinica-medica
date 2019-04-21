@@ -1,0 +1,47 @@
+{% extends 'tcc/base.html' %}
+
+{% block content %}
+
+
+	{% if request.session.tipo_user == 2 or request.session.tipo_user == 0 %}
+		<a class="btn btn-primary" href="{% url 'create_paciente' %}" role="button">Cadastrar paciente</a>
+		<br>
+	{% endif %}
+
+	
+
+	<h1>Lista de Pacientes</h1>
+
+		
+	<table class="table">
+	    <thead>
+	      <tr >
+	        <th>Número de Indentificação</th>
+	        <th>Nome do Paciente</th>
+	        <th>Ações</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	    	{% for p in paciente %}
+	      	<tr>
+		        <td><p>{{p.id_paciente}}</p></td>
+		        <td><p>{{p.nome_paciente}}</p></td>
+		        <td>
+		        	<a class="btn btn-success" href="{% url 'get_paciente_byid' paciente_id=p.id_paciente %}" role="button">Detalhes</a>
+
+		        	{% if request.session.tipo_user == 2 or request.session.tipo_user == 0 %}
+		        		<a class="btn btn-warning" href="{% url 'update_paciente' paciente_id=p.id_paciente %}" role="button">Atualizar Dados</a>
+		        	{% endif %}
+
+					{% if request.session.tipo_user == 2 %}
+						<a class="btn btn-danger" href="{% url 'delete_paciente' paciente_id=p.id_paciente %}" role="button">Delete</a>
+					{% endif %}
+		        </td>
+	      	</tr>
+	      	{% endfor %}
+	    </tbody>
+	</table>
+	
+
+
+{% endblock %}

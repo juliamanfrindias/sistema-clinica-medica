@@ -1,0 +1,127 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Sistema de Gestão de Clínica Médica</title>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/projeto.css">
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+
+
+	<link href='/static/js/fullcalendar/core/main.css' rel='stylesheet' />
+    <link href='/static/js/fullcalendar/daygrid/main.css' rel='stylesheet' />
+    <link href='/static/js/fullcalendar/list/main.css' rel='stylesheet' />
+    <link href='/static/js/fullcalendar/timeline/main.css' rel='stylesheet' />
+
+    <script src='/static/js/fullcalendar/core/main.js'></script>
+    <script src='/static/js/fullcalendar/daygrid/main.js'></script>
+    <script src='/static/js/fullcalendar/interaction/main.js'></script>
+    <script src='/static/js/fullcalendar/google-calendar/main.js'></script>
+    <script src='/static/js/fullcalendar/list/main.js'></script>
+    <script src='/static/js/fullcalendar/timeline/main.js'></script>
+
+
+  	 <script type="text/javascript">
+
+
+    	document.addEventListener('DOMContentLoaded', function() {
+
+
+    		var agenda = {{agenda | safe}};
+    		agenda = agenda['versionAgenda']
+
+	        var calendarEl = document.getElementById('calendar');
+	        	        
+
+	        var calendar = new FullCalendar.Calendar(calendarEl, {
+
+	          	plugins: [ 'dayGrid', 'timeGrid', 'list', 'interaction', 'googleCalendar', 'timeline' ],
+
+	          	defaultView: 'dayGridMonth',
+	  			selectable: true,
+	  			editable: true,
+
+	  			timeZone: 'local',
+				eventLimit: true, 
+	    		events: agenda,
+				 
+			    dateClick: function(info) {
+				    alert('Data: ' + info.dateStr);
+				    alert('Resource ID: ' + info.resource.id);
+				    
+				}
+	        });
+	        calendar.render();
+
+	      });
+
+
+		
+    </script>
+
+
+	
+</head>
+
+<body>
+
+	
+	<div class="container">
+	  
+	   	<div class="row">
+	   		<div class="page-header">
+			
+				<div class="row">
+					<div class="col-sm-11" >
+						<h1><a href="{% url 'authenticate_login' %}" style="text-decoration:none; color: #000;">Sistema de Gestão de Clínica Médica</a></h1>
+					</div>
+
+		    		<div class="col-sm-1" >
+		    			<a class="btn btn-primary" href="{% url 'logout' %}" role="button">Logout</a>
+		    			
+		    		</div>
+				</div>
+			
+			</div>
+  			{% if request.session.logado %}
+  				  				
+
+  				<div role="main">
+					<form action="{% url 'update_consulta' consulta_id=consulta.id_consulta %}" method="POST">
+
+						<p>Id do paciente: {{consulta.id_paciente.id_paciente}} </p>
+						<p>Id do medico: {{ consulta.id_medico.id_medico}}</p>
+						<p>Nome do medico: {{consulta.id_medico.nome_funcionario}}</p>
+						<p>Data da Consulta: <input type="date" name="data" id="data" value="{{data}}"></p>
+						<p>Hora da Consulta: <input type="time" name="time" id="time" value="{{time}}"></p>
+						
+						{% csrf_token %}
+
+						<button class="btn btn-primary" type="submit">Salvar</button>
+						<a class="btn btn-default" href="{% url 'get_all_consulta' %}" role="button">Cancelar</a>
+
+					</form>
+
+					 <div id='calendar'></div>
+					
+					
+  					
+
+		      	</div>
+
+	</div>
+		      	
+		    {% else %}
+		    	<div>
+		    		<h2>Usuário não auntenticado!</h2>
+		    	</div>
+  			{% endif%}
+	       
+	   	</div>
+	   	<footer class="row">
+	       
+	   	</footer>
+	</div>
+
+</body>
+</html>

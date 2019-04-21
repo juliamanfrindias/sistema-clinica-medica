@@ -1,0 +1,45 @@
+{% extends 'tcc/base.html' %}
+
+{% block content %}
+
+	<h2>Lista de Médicos</h2>
+
+
+	<table class="table">
+	    <thead>
+	      <tr >
+	        <th>Número de Indentificação</th>
+	        <th>Nome do Médico</th>
+	        <th>Especialidade</th>
+	        <th>Ações</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	    	{% for m in medico %}
+	      	<tr>
+		        <td><p>{{ m.id_medico }}</p></td>
+		        <td><p>{{ m.nome_funcionario }}</p></td>
+		        <td><p>{{ m.especialidade_medico }}</p></td>
+		        <td>
+
+		        	{% if request.session.tipo_user == 2 or request.session.tipo_user == 0 %}
+						<a class="btn btn-primary" href="{% url 'create_consulta' medico_id=m.id_medico %}" role="button">Marcar Consulta</a>
+					
+					{% endif %}
+
+		        	<a class="btn btn-success" href="{% url 'get_medico_byid' medico_id=m.id_medico %}" role="button">Detalhes</a>
+
+					{% if request.session.tipo_user == 2 %}
+						<a class="btn btn-warning" href="{% url 'update_medico' medico_id=m.id_medico %}" role="button">Atualizar Dados</a>
+
+						<a class="btn btn-danger" href="{% url 'delete_medico' medico_id=m.id_medico %}" role="button">Deletar</a>
+					{% endif %}
+		        </td>
+	      	</tr>
+	      	{% endfor %}
+	    </tbody>
+	</table>
+	
+
+
+{% endblock %}

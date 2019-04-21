@@ -1,0 +1,25 @@
+{% extends 'tcc/base.html' %}
+
+{% block content %}
+
+	<h2>Cadastro de Medico</h2>
+
+	<div class="form-group">
+		<form action="{% url 'update_medico' medico_id=medico.id_medico %}" method="POST">
+		
+
+			<p>Nome: <input class="form-control" type="text" name="nome" id="nome" value="{{medico.nome_funcionario}}"></p>
+
+			<p>Email:<input class="form-control" type="text" name="email" id="email" value="{{medico.email_funcionario}}"></p>
+
+			<p>Especialidade: <input class="form-control" type="text" name="especialidade" id="especialidade" value="{{medico.especialidade_medico}}"></p>
+
+			{% csrf_token %}
+
+			<button class="btn btn-primary" type="submit">Salvar</button>
+			<a class="btn btn-default" href="{% url 'get_all_medico' %}" role="button">Cancelar</a>
+
+		</form>
+	</div>
+
+{% endblock %}

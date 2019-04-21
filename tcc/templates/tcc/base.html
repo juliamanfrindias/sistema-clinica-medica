@@ -1,0 +1,67 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sistema de Gestão de Clínica Médica</title>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/projeto.css">
+
+	
+</head>
+<body>
+
+	
+	<div class="container">
+
+		<div class="page-header">
+			
+			<div class="row">
+				<div class="col-sm-11" >
+					<h1><a href="{% url 'authenticate_login' %}" style="text-decoration:none; color: #000;">Sistema de Gestão de Clínica Médica</a></h1>
+				</div>
+
+	    		<div class="col-sm-1" >
+	    			<a class="btn btn-primary" href="{% url 'logout' %}" role="button">Logout</a>
+	    			
+	    		</div>
+			</div>
+		
+		</div>
+
+		
+		
+
+	</div>
+
+
+
+	<div class="container">
+	  
+	   	<div class="row">
+	   		<!-- <div class="page-header">
+	   			<h1>Sistema de Gestão de Clínica Médica</h1>
+	   			<button><a href="{% url 'logout' %}">Logout</a></button>    			    
+  			</div> -->
+  			{% if request.session.logado %}
+  			
+  				<div role="main">
+		           	{% block content %}
+					{% endblock %}
+		      	</div>
+		      	
+		    {% else %}
+		    	<div>
+		    		<h2>Usuário não auntenticado!</h2>
+		    	</div>
+  			{% endif%}
+	       
+	   	</div>
+	   	<footer class="row">
+	       
+	   	</footer>
+	</div>
+
+</body>
+</html>

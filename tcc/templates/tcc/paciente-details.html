@@ -1,0 +1,22 @@
+{% extends 'tcc/base.html' %}
+
+{% block content %}
+
+
+	<h1>Paciente</h1>
+	<p>Nome: {{paciente.nome_paciente}}</p>
+
+	<p>Id: {{paciente.id_paciente}}</p>
+
+	<p>Email: {{paciente.email_paciente}}</p>
+
+	<p>CPF: {{paciente.cpf_paciente}}</p>
+
+	<p>Data de Nascimento: {{paciente.dtnasc_paciente}}</p>
+
+	<a class="btn btn-default" href="{% url 'get_all_paciente' %}" role="button">Voltar</a>
+
+{% endblock %}
+
+
+

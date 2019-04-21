@@ -1,0 +1,15 @@
+{% extends 'tcc/base.html' %}
+
+{% block content %}
+	<h2>Detalhes da Consulta</h2>
+
+	<p>Número da Consulta: {{ consulta.id_consulta }}</p>
+	<p>Nome do paciente: {{ consulta.id_paciente.nome_paciente }}</p>
+	<p>Nome do medico: {{ consulta.id_medico.nome_funcionario }}</p>
+	<p>Especialidade do médico: {{ consulta.id_medico.especialidade_medico }}</p>
+	<p>Data da Consulta: {{ consulta.data_consulta }}</p>
+	
+
+	<a class="btn btn-default" href="{% url 'get_all_consulta' %}" role="button">Voltar</a>
+
+{% endblock %}

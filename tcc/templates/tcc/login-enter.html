@@ -1,0 +1,33 @@
+{% extends 'tcc/base-login.html' %}
+
+{% block content %}
+
+	<h2>Login</h2>
+	
+	<div class="form-group">
+
+		<form action="{% url 'authenticate_login' %}" method="POST" >
+		
+			<p>Usuário</p>
+			<input class="form-control" type="text" name="user" id="user">
+			<p>Senha</p>
+			<input class="form-control" type="password" name="password" id="password">
+			
+
+			{% csrf_token %}
+
+			<br>
+			<br>
+			<input class="btn btn-primary" type="submit" name="enviar" value="Entrar">
+
+			
+			<a class="btn btn-primary"  href="{% url 'register_login' %}" role="button">Cadastrar Login</a>
+			
+		</form>
+
+	</div>
+
+
+
+	
+{% endblock %}

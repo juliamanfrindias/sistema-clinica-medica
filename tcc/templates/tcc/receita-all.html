@@ -1,0 +1,51 @@
+{% extends 'tcc/base.html' %}
+
+{% block content %}
+
+
+	{% if request.session.tipo_user == 1 %}
+
+		<a class="btn btn-primary" href="{% url 'create_receita' %}" role="button">Nova Receita</a>
+		<br>
+	{% endif %}
+
+	<h2>Histórico de Receitas</h2>
+
+	<table class="table">
+	    <thead>
+	      <tr >
+	        <th>Número de Indentificação</th>
+	        <th>Número de Indetificação da Consulta</th>
+	        <th>Nome Paciente</th>
+	        <th>Nome Medico</th>
+	        
+	        <th>Ações</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	    	{% for r in receita %}
+	      	<tr>
+		        <td><p>{{ r.id_receita}}</p></td>
+		        <td><p>{{ r.id_consulta.id_consulta}}</p></td>
+		        <td><p>{{ r.id_consulta.id_paciente.nome_paciente}}</p></td>
+		        <td><p>{{ r.id_consulta.id_medico.nome_funcionario}}</p></td>
+		        <td>
+		        	<a class="btn btn-success" href="{% url 'get_receita_byid' receita_id=r.id_receita %}" role="button">Detalhes</a>
+
+					{% if request.session.tipo_user == 2 or request.session.tipo_user == 1 %}
+						<a class="btn btn-warning" href="{% url 'update_receita' receita_id=r.id_receita %}" role="button">Atualizar Dados</a>
+					{% endif %}
+
+					{% if request.session.tipo_user == 2 %}
+						<a class="btn btn-danger" href="{% url 'delete_receita' receita_id=r.id_receita %}" role="button">Deletar</a>
+					{% endif %}
+		        </td>
+	      	</tr>
+	      	{% endfor %}
+	    </tbody>
+	</table>
+
+	
+
+
+{% endblock %}

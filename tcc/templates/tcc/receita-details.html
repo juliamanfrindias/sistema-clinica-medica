@@ -1,0 +1,30 @@
+{% extends 'tcc/base.html' %}
+
+{% block content %}
+	<h2>Detalhes da receita</h2>
+
+	<p>Id da receita: {{ receita.id_receita }}</p>
+
+	<p>Id da Consulta: {{ receita.id_consulta.id_consulta }}</p>
+
+	<p>Nome do Paciente: {{ receita.id_consulta.id_paciente.nome_paciente }}</p>
+
+	<p>Nome do Medico: {{ receita.id_consulta.id_medico.nome_funcionario }}</p>
+
+	<p>Descrição da receita: {{ receita.descricao_receita }}</p>
+
+	<p>Medicamentos:
+		{% for m in receita.id_medicamento.all %}
+			{{ m.nomegen_medicamento }}
+		{% endfor %}
+	</p>
+	<p>Data de emissão: {{receita.data_receita}}</p>
+	
+	<a class="btn btn-primary" href="{% url 'gera_pdf' receita.id_receita %}" role="button">Emitir Receita</a>
+	{% if  request.session.tipo_user == 1 %}
+				<a class="btn btn-default" href="{% url 'authenticate_login' %}" role="button">Voltar</a>
+			{% else %}
+				<a class="btn btn-default" href="{% url 'get_all_receita' %}" role="button">Voltar</a>
+			{% endif %}
+
+{% endblock %}
